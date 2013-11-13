@@ -183,7 +183,6 @@ aside p:hover {
 
 .header>h1 {
 	font-size: 55px;
-
 }
 
 .content {
@@ -195,6 +194,25 @@ aside p:hover {
 	height: 60px;
 	display: block;
 	float: left;
+}
+
+.slider {
+	width: 415px;
+	height: 15px;
+	background-color: #0dac9b;
+}
+
+.scrubber,
+.vscrubber {
+	width: 15px;
+	height: 15px;
+	background-color: #ff7713;
+}
+
+.vslider {
+	width: 215px;
+	height: 15px;
+	background-color: #0dac9b;
 }
 
 

@@ -55,16 +55,35 @@
 			<input class="button" type="submit" value="Sign Up">
 			<input class="button" type="submit" value="Log In">
 
-			<div>
-				<span class="control"><img src="img/play.gif"></span>
-				<span class="control"><img src="img/record.gif"></span>
-				<span class="control"><img src="img/camera.gif"></span>
-				<span class="control"><img src="img/speaker.gif"></span>
+			<div class="panel">
+				<div class="control play"><img src="img/play.gif"></div>
+				<div class="control record"><img src="img/record.gif"></div>
+				<div style="height:60px">
+					<select class="camera">
+					</select>
+				</div>
+				<div style="height:60px">
+					<select class="speaker">
+					</select>
+				</div>
+				<div>
+					<div class="vslider">
+						<div class="vscrubber"></div>
+					</div>
+				</div>
+				<div>
+					<div class="slider">
+						<div class="scrubber"></div>
+					</div>		
+				</div>
 			</div>
 
-			<div>
-
-			</div>
+			<div id="flashContent">
+	            <script type="text/javascript">
+	                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");
+	                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" );
+	            </script>
+	        </div>
 		</section>
 	</section>
 	</div>
@@ -72,6 +91,14 @@
 	<footer>
 
 	</footer>
+
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="js/swfobject.js"></script>
+
+	<script type="text/javascript" src="js/sms_setup.js"></script>
+
+	<script type="text/javascript" src="js/main.js"></script>
 
 </body>
 </html>
