@@ -204,9 +204,9 @@ aside p:hover {
 
 .scrubber,
 .vscrubber {
-	width: 15px;
-	height: 15px;
-	background-color: #ff7713;
+	width: 100%;
+	height: 100%;
+	background: url('../img/slider.gif') no-repeat;
 }
 
 .vslider {

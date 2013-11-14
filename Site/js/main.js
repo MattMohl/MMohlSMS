@@ -1,12 +1,12 @@
 
 var recording = -1;
+var clicking = -1;
 var dur = 0;
 var vol = 0;
 var cameras = [];
 var speakers = [];
 
 var flashReady = function() {
-	console.log('ready');
 	flash.connect("rtmp://localhost/SMSServer");
 }
 
@@ -15,7 +15,8 @@ var connected = function(success, error) {
 		flash.startPlaying('hobbit_vp6.flv');
 
 		vol = flash.getVolume();
-		$('.vscrubber').css('margin-left', vol*4);
+		console.log(vol*100);
+		$('.vscrubber').css('background-position', String(vol*100)+'%');
 
 		cameras = flash.getCameras();
 
@@ -28,14 +29,12 @@ var connected = function(success, error) {
 		$(speakers).each(function(index) {
 			$('.speaker').append('<option>'+speakers[index]+'</option>');
 		});
-	}else {
-		console.log('fuck you');
 	}
 }
 
 var seekTime = function(time) {
 	var prc = (time/dur) * 100;
-	$('.scrubber').css('margin-left',(prc*4));
+	$('.scrubber').css('background-position',(String(prc)+'%'));
 }
 
 var getDuration = function(duration) {
@@ -55,14 +54,42 @@ $('.record').click(function(e) {
 	}
 });
 
-$('.slider').click(function(e) {
+$('.scrubber').mousedown(function(e) {
+	clicking*=-1;
 	var prc = (e.pageX - $(this).offset().left)/400;
-	console.log(prc*=100);
+	prc*=100;
 	flash.setTime((dur/100)*prc);
 });
 
-$('.vslider').click(function(e) {
-	var prc = (e.pageX - $(this).offset().left)/400;
-	flash.setVolume(prc*=100);
-	$('.vscrubber').css('margin-left', prc*4);
+$('.vscrubber').mousedown(function(e) {
+	clicking*=-1;
+	var prc = (e.pageX - $(this).offset().left)/200;
+	flash.setVolume(prc);
+	$('.vscrubber').css('background-position', String(prc*100)+'%');
 });
+
+$('.scrubber').mousemove(function(e) {
+	if(clicking == 1) {
+		var prc = (e.pageX - $(this).offset().left)/400;
+		prc*=100;
+		flash.setTime((dur/100)*prc);
+	}
+});
+
+$('.vscrubber').mousemove(function(e) {
+	if(clicking == 1) {
+		var prc = (e.pageX - $(this).offset().left)/200;
+		flash.setVolume(prc);
+		$('.vscrubber').css('background-position', String(prc*100)+'%');
+	}
+});
+
+$('.vscrubber').mouseup(function(e){clicking*=-1;});
+$('.scrubber').mouseup(function(e){clicking*=-1;});
+
+
+
+
+
+
+
