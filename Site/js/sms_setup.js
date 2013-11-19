@@ -25,10 +25,10 @@ params.allowfullscreen = "true";
 var attributes = {};
 attributes.id = "higley_wigley";
 attributes.name = "higley_wigley";
-attributes.align = "middle";
+attributes.align = "top";
 swfobject.embedSWF(
     "swf/higley_wigley.swf", "flashContent",
-    "100%", "100%",
+    "80%", "100%",
     swfVersionStr, xiSwfUrlStr,
     flashvars, params, attributes);
 // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.

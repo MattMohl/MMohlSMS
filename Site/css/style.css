@@ -72,6 +72,13 @@ a {
 	color: #ff7713;
 }
 
+h2 {
+	font-size: 32px;
+}
+h4 {
+	font-size: 24px;
+}
+
 body {
 	font-family: 'Sofia Pro', sans-serif;
 }
@@ -98,6 +105,10 @@ input.button:hover {
 input.button:active {
 	padding: 0 20px;
 	background-color: #047064;
+}
+
+input.text {
+	height: 30px;
 }
 
 /* Sidebar */
@@ -196,8 +207,15 @@ aside p:hover {
 	float: left;
 }
 
+.flashContent {
+	display: block;
+	background-color: #000;
+	width: 80%;
+	margin: 0 auto;
+}
+
 .slider {
-	width: 415px;
+	width: 100%;
 	height: 15px;
 	background-color: #0dac9b;
 }
@@ -213,6 +231,26 @@ aside p:hover {
 	width: 215px;
 	height: 15px;
 	background-color: #0dac9b;
+}
+
+.chatlist {
+	width: 50%;
+	border: 1px solid #000;
+	margin-bottom: 30px;
+	max-height: 400px;
+	min-height: 50px;
+	overflow: scroll;
+}
+
+label {
+	display: block;
+	color: #fff;
+	padding: 5px;
+	background-color: #0dac9b;
+}
+
+.chatlist p {
+	padding: 15px;
 }
 
 

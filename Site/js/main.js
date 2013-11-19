@@ -5,6 +5,7 @@ var dur = 0;
 var vol = 0;
 var cameras = [];
 var speakers = [];
+var myDataRef = new Firebase('https://mattmohlfullsail.firebaseio.com/');
 
 var flashReady = function() {
 	flash.connect("rtmp://localhost/SMSServer");
@@ -12,7 +13,7 @@ var flashReady = function() {
 
 var connected = function(success, error) {
 	if(success) {
-		flash.startPlaying('hobbit_vp6.flv');
+		flash.startPlaying('startrekintodarkness_vp6.flv');
 
 		vol = flash.getVolume();
 		console.log(vol*100);
@@ -41,6 +42,10 @@ var getDuration = function(duration) {
 	dur = duration;
 }
 
+var displayChatMessage = function(name, text) {
+	$('.chatlist').append('<label>'+name+'</label>'+'<p>'+text+'</p>');
+}
+
 $('.play').click(function(e) {
 	flash.playPause();
 });
@@ -56,21 +61,21 @@ $('.record').click(function(e) {
 
 $('.scrubber').mousedown(function(e) {
 	clicking*=-1;
-	var prc = (e.pageX - $(this).offset().left)/400;
+	var prc = (e.pageX - $(this).offset().left)/$('.slider').width();
 	prc*=100;
 	flash.setTime((dur/100)*prc);
 });
 
 $('.vscrubber').mousedown(function(e) {
 	clicking*=-1;
-	var prc = (e.pageX - $(this).offset().left)/200;
+	var prc = (e.pageX - $(this).offset().left)/$('.vslider').width();
 	flash.setVolume(prc);
 	$('.vscrubber').css('background-position', String(prc*100)+'%');
 });
 
 $('.scrubber').mousemove(function(e) {
 	if(clicking == 1) {
-		var prc = (e.pageX - $(this).offset().left)/400;
+		var prc = (e.pageX - $(this).offset().left)/$('.slider').width();
 		prc*=100;
 		flash.setTime((dur/100)*prc);
 	}
@@ -78,10 +83,33 @@ $('.scrubber').mousemove(function(e) {
 
 $('.vscrubber').mousemove(function(e) {
 	if(clicking == 1) {
-		var prc = (e.pageX - $(this).offset().left)/200;
+		var prc = (e.pageX - $(this).offset().left)/$('.vslider').width();
 		flash.setVolume(prc);
 		$('.vscrubber').css('background-position', String(prc*100)+'%');
 	}
+});
+
+$('.msg').keypress(function(e) {
+	if(e.keycode == 13 && $('.msg').val()) {
+		var name = $('.name').val();
+		var msg = $('.msg').val();
+		myDataRef.push({name: name, text: msg});
+		$('.msg').val('');
+	}
+});
+
+$('.submit').click(function(e) {
+	if($('.msg').val()) {
+		var name=$('.name').val();
+		var msg=$('.msg').val();
+		myDataRef.push({name: name, text: msg});
+		$('.msg').val('');
+	}
+});
+
+myDataRef.on('child_added', function(snapshot) {
+	var message = snapshot.val();
+	displayChatMessage(message.name, message.text);
 });
 
 $('.vscrubber').mouseup(function(e){clicking*=-1;});
