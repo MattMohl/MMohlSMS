@@ -204,6 +204,7 @@ aside p:hover {
 	width: 60px;
 	height: 60px;
 	display: block;
+	margin: 10px;
 	float: left;
 }
 
@@ -230,13 +231,24 @@ aside p:hover {
 .vslider {
 	width: 215px;
 	height: 15px;
+	margin: 30px 10px;
 	background-color: #0dac9b;
+	float: left;
+}
+
+.camera,
+.speaker {
+	height: 20px;
+	margin: 10px 10px;
+}
+
+.comments {
+	padding: 30px 0;
 }
 
 .chatlist {
 	width: 50%;
 	border: 1px solid #000;
-	margin-bottom: 30px;
 	max-height: 400px;
 	min-height: 50px;
 	overflow: scroll;
